@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:cabproject/screens/chooseVehicle_screen.dart';
 class LocationSelectionModal {
   static void show(BuildContext context) {
     showModalBottomSheet(
@@ -116,6 +116,17 @@ class LocationSelectionModal {
               ],
             ),
             const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChooseVehicleScreen()));
+                }, child: Text('Confirm')),
+               
+              ],
+            ),
+
+
             _buildSavedLocationItem(
               'Giga Mall Plaza',
               '8946 Essex St, Sunnyside, In46321',

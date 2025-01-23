@@ -237,7 +237,7 @@ class HomeContent extends StatelessWidget {
               const SizedBox(height: 16),
               const PastBookingCard(),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 34),
 
               // Promos Section
               const Text('Promos',
@@ -257,7 +257,7 @@ class HomeContent extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: PromoCard(
-                      imagePath: 'assets/images/Offer.png',
+                      imagePath: 'assets/images/discount.png',
                       title: 'billing',
                       subtitle: 'more on your favorite restaurant',
                       color: Colors.blue,

@@ -1,12 +1,12 @@
 import 'package:cabproject/screens/search_page.dart';
 import 'package:cabproject/screens/trash_page.dart';
 import 'package:flutter/material.dart';
-import '../utils/location_text_field.dart';
+
 import '../utils/promo_card.dart';
 import '../screens/profile_page.dart';
 import '../utils/service_item.dart';
-import '../utils/location_selection_modal.dart';
 import '../widgets/past_booking_card.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,9 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _pages[_selectedIndex], // Show the selected page
+      body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
+          color: Colors.white,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -47,45 +48,41 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        child: BottomNavigationBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.orange,
-          unselectedItemColor: Colors.grey,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          selectedLabelStyle: const TextStyle(fontSize: 12),
-          unselectedLabelStyle: const TextStyle(fontSize: 12),
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          items: [
-            BottomNavigationBarItem(
-              icon: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: _selectedIndex == 0 
-                      ? Colors.orange.withOpacity(0.1)
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Icon(Icons.home_filled),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+          child: GNav(
+            backgroundColor: Colors.white,
+            color: Colors.grey,
+            activeColor: Colors.orange,
+            tabBackgroundColor: Colors.orange.withOpacity(0.1),
+            gap: 8,
+            padding: const EdgeInsets.all(16),
+            iconSize: 24,
+            tabs: const [
+              GButton(
+                icon: Icons.home_filled,
+                text: 'Home',
+                iconSize: 28,
               ),
-              label: 'Home',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.delete_outline),
-              label: 'Trash',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Search',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              label: 'Profile',
-            ),
-          ],
+              GButton(
+                icon: Icons.delete_outline,
+                text: 'Trash',
+                iconSize: 28,
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Search',
+                iconSize: 28,
+              ),
+              GButton(
+                icon: Icons.person_outline,
+                text: 'Profile',
+                iconSize: 28,
+              ),
+            ],
+            selectedIndex: _selectedIndex,
+            onTabChange: _onItemTapped,
+          ),
         ),
       ),
     );

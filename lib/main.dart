@@ -1,4 +1,4 @@
-import 'package:cabproject/screens/home_screen.dart';
+import 'package:cabproject/screens/bottomtabs/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

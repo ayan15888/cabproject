@@ -66,6 +66,7 @@ class VehicleOptionTile extends StatelessWidget {
           title: Text(
             title,
             style: TextStyle(
+              fontSize: 17,
               color: isSelected ? Colors.orange : Colors.black,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),

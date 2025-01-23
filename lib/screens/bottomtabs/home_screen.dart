@@ -1,11 +1,11 @@
-import 'package:cabproject/screens/search_page.dart';
-import 'package:cabproject/screens/trash_page.dart';
+import 'package:cabproject/screens/bottomtabs/search_page.dart';
+import 'package:cabproject/screens/bottomtabs/bag_page.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/promo_card.dart';
-import '../screens/profile_page.dart';
-import '../utils/service_item.dart';
-import '../widgets/past_booking_card.dart';
+import '../../utils/promo_card.dart';
+import '../../screens/bottomtabs/profile_page.dart';
+import '../../utils/service_item.dart';
+import '../../widgets/past_booking_card.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // List of pages to show
   final List<Widget> _pages = [
     const HomeContent(), // This will be your current home content
-    const TrashPage(),
+    const BagPage(),
     const SearchPage(),
     const ProfilePage(),
   ];
@@ -65,8 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 iconSize: 28,
               ),
               GButton(
-                icon: Icons.delete_outline,
-                text: 'Trash',
+                icon: Icons.backpack,
+                text: 'Bag',
                 iconSize: 28,
               ),
               GButton(
@@ -225,12 +225,12 @@ class HomeContent extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 23),
 
               // Past Bookings Section
               const Text('Past Bookings',
                   style:
-                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
               const PastBookingCard(),
 
@@ -239,7 +239,7 @@ class HomeContent extends StatelessWidget {
               // Promos Section
               const Text('Promos',
                   style:
-                      TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                      TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
               Row(
                 children: [

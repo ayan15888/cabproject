@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:cabproject/screens/chooseVehicle_screen.dart';
+import 'package:flutter/material.dart';
+import 'saved_location_item.dart';
+
 class LocationSelectionModal {
   static void show(BuildContext context) {
     showModalBottomSheet(
@@ -42,7 +44,8 @@ class LocationSelectionModal {
                   ),
                 ],
               ),
-              child: TextField(
+              child:
+               TextField(
                 decoration: InputDecoration(
                   hintText: 'From',
                   hintStyle: TextStyle(color: Colors.grey[600]),
@@ -66,6 +69,15 @@ class LocationSelectionModal {
               ),
             ),
             const SizedBox(height: 12),
+              const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+            child: Row(
+              children: [
+                Icon(Icons.more_vert),
+              ],
+              
+            ),
+          ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
@@ -102,6 +114,28 @@ class LocationSelectionModal {
               ),
             ),
             const SizedBox(height: 24),
+             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton (
+                  
+                  style: ElevatedButton.styleFrom(
+                    
+                    backgroundColor: Colors.orange,
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  ChooseVehicleScreen(),
+                      ),
+                    );
+                  },
+                  child: Text('Search')),
+               
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -116,66 +150,27 @@ class LocationSelectionModal {
               ],
             ),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChooseVehicleScreen()));
-                }, child: Text('Confirm')),
-               
-              ],
-            ),
+           
+            
 
-
-            _buildSavedLocationItem(
+            buildSavedLocationItem(
               'Giga Mall Plaza',
               '8946 Essex St, Sunnyside, In46321',
             ),
-            _buildSavedLocationItem(
+            buildSavedLocationItem(
               'Mega Mall Plaza',
               '8946 Essex St, Sunnyside, In46321',
             ),
-            _buildSavedLocationItem(
+            buildSavedLocationItem(
               'Mini Park',
               '8946 Essex St, Sunnyside, In46321',
             ),
-            _buildSavedLocationItem(
+            buildSavedLocationItem(
               'Big Restaurant',
               '8946 Essex St, Sunnyside, In46321',
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  static Widget _buildSavedLocationItem(String title, String address) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          const Icon(Icons.access_time, color: Colors.grey),
-          const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-              Text(
-                address,
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

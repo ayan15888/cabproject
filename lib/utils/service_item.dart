@@ -1,3 +1,4 @@
+import 'package:cabproject/utils/location_selection_modal.dart';
 import 'package:flutter/material.dart';
 
 class ServiceItem extends StatelessWidget {
@@ -6,7 +7,7 @@ class ServiceItem extends StatelessWidget {
   final VoidCallback? onTap;
   final Color? backgroundColor;
 
-  const ServiceItem({
+  const  ServiceItem({
     super.key,
     required this.title,
     required this.imagePath,
@@ -17,7 +18,7 @@ class ServiceItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => LocationSelectionModal.show(context),
       child: Column(
         children: [
           Container(

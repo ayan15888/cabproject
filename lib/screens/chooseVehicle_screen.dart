@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'confirm_screen.dart';
 import '../utils/vehicle_option_tile.dart';
 
 
@@ -11,7 +10,7 @@ class ChooseVehicleScreen extends StatefulWidget {
 }
 
 class _ChooseVehicleScreenState extends State<ChooseVehicleScreen> {
-  int? selectedIndex; // Track selected vehicle option
+  int? selectedIndex = 0; // Default to the first option being selected
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,6 @@ class _ChooseVehicleScreenState extends State<ChooseVehicleScreen> {
             height: double.infinity,
             fit: BoxFit.cover,
           ),
-          
           DraggableScrollableSheet(
             initialChildSize: 0.4,
             minChildSize: 0.2,
@@ -57,76 +55,20 @@ class _ChooseVehicleScreenState extends State<ChooseVehicleScreen> {
                         ),
                       ),
                     ),
-                    VehicleOptionTile(
-                      title: 'Just go',
-                      price: '\$25.00',
-                      distance: '0.1 km',
-                      time: '5 min',
-                      icon: Icons.directions_car,
-                      index: 0,
-                      selectedIndex: selectedIndex,
-                      onSelect: (index) => setState(() => selectedIndex = index),
-                    ),
-                    VehicleOptionTile(
-                      title: 'Limousine',
-                      price: '\$80.00',
-                      distance: '0.2 km',
-                      time: '3 min',
-                      icon: Icons.airport_shuttle,
-                      index: 1,
-                      selectedIndex: selectedIndex,
-                      onSelect: (index) => setState(() => selectedIndex = index),
-                    ),
-                    VehicleOptionTile(
-                      title: 'Luxury',
-                      price: '\$50.00',
-                      distance: '0.4 km',
-                      time: '5 min',
-                      icon: Icons.directions_car,
-                      index: 2,
-                      selectedIndex: selectedIndex,
-                      onSelect: (index) => setState(() => selectedIndex = index),
-                    ),
-                    VehicleOptionTile(
-                      title: 'ElectricCar',
-                      price: '\$25.00',
-                      distance: '0.3 km',
-                      time: '4 min',
-                      icon: Icons.directions_car,
-                      index: 3,
-                      selectedIndex: selectedIndex,
-                      onSelect: (index) => setState(() => selectedIndex = index),
-                    ),
-                    VehicleOptionTile(
-                      title: 'Bike',
-                      price: '\$15.00',
-                      distance: '0.48 km',
-                      time: '5 min',
-                      icon: Icons.directions_bike,
-                      index: 4,
-                      selectedIndex: selectedIndex,
-                      onSelect: (index) => setState(() => selectedIndex = index),
-                    ),
-                    VehicleOptionTile(
-                      title: 'Taxi 4 seat',
-                      price: '\$30.00',
-                      distance: '0.5 km',
-                      time: '4 min',
-                      icon: Icons.directions_car,
-                      index: 5,
-                      selectedIndex: selectedIndex,
-                      onSelect: (index) => setState(() => selectedIndex = index),
-                    ),
-                    VehicleOptionTile(
-                      title: 'Taxi 7 seat',
-                      price: '\$40.00',
-                      distance: '0.6 km',
-                      time: '4 min',
-                      icon: Icons.directions_bus,
-                      index: 6,
-                      selectedIndex: selectedIndex,
-                      onSelect: (index) => setState(() => selectedIndex = index),
-                    ),
+                    ...vehicleOptions.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final option = entry.value;
+                      return VehicleOptionTile(
+                        title: option.title,
+                        price: option.price,
+                        distance: option.distance,
+                        time: option.time,
+                        icon: option.icon,
+                        index: index,
+                        selectedIndex: selectedIndex,
+                        onSelect: (index) => setState(() => selectedIndex = index),
+                      );
+                    }),
                   ],
                 ),
               );
@@ -155,21 +97,55 @@ class VehicleOption {
   });
 }
 
-// Update vehicle options data with icons
+// Updated vehicle options data with all entries
 final vehicleOptions = [
   VehicleOption(
     title: 'Just go',
     price: '\$25.00',
-    distance: '0.2 km',
-    time: '2 min',
+    distance: '0.1 km',
+    time: '5 min',
     icon: Icons.directions_car,
   ),
   VehicleOption(
     title: 'Limousine',
     price: '\$80.00',
     distance: '0.2 km',
-    time: '5 min',
+    time: '3 min',
     icon: Icons.airport_shuttle,
   ),
-  
+  VehicleOption(
+    title: 'Luxury',
+    price: '\$50.00',
+    distance: '0.4 km',
+    time: '5 min',
+    icon: Icons.directions_car,
+  ),
+  VehicleOption(
+    title: 'ElectricCar',
+    price: '\$25.00',
+    distance: '0.3 km',
+    time: '4 min',
+    icon: Icons.directions_car,
+  ),
+  VehicleOption(
+    title: 'Bike',
+    price: '\$15.00',
+    distance: '0.48 km',
+    time: '5 min',
+    icon: Icons.directions_bike,
+  ),
+  VehicleOption(
+    title: 'Taxi 4 seat',
+    price: '\$30.00',
+    distance: '0.5 km',
+    time: '4 min',
+    icon: Icons.directions_car,
+  ),
+  VehicleOption(
+    title: 'Taxi 7 seat',
+    price: '\$40.00',
+    distance: '0.6 km',
+    time: '4 min',
+    icon: Icons.directions_bus,
+  ),
 ];
